@@ -1,0 +1,10 @@
+[
+  {
+    "key": "URLTarget",
+    "type": "string"
+  },
+  {
+    "key": "redirectAddress",
+    "type": "string"
+  }
+]
