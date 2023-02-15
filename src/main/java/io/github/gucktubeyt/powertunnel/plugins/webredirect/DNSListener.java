@@ -11,17 +11,24 @@ import java.util.Map;
 
 public class DNSListener extends ProxyAdapter {
     public String address;
-    public String URLWeb;
+    public String[] URLWeb;
     public int portAddress;
 
-    public DNSListener(String web, String addr, int port) {
+    public DNSListener(String[] web, String addr, int port) {
+        URLWeb = web;
         address = addr;
         portAddress = port;
-        URLWeb = web;
     }
-    
+
     public Boolean onResolutionRequest(@NotNull DNSRequest request) {
-        if (request.getHost().contains(URLWeb)) request.setResponse(new InetSocketAddress(address, portAddress));
+        for (int a = 0; a < URLWeb.length; a++) {
+            if (request.getHost().endsWith(URLWeb[a])) {
+                request.setResponse(new InetSocketAddress(address, portAddress));
+                System.out.println("found!\n");
+                return super.onResolutionRequest(request);
+            }
+        }
+        System.out.println("not found");
         return super.onResolutionRequest(request);
     }
 }

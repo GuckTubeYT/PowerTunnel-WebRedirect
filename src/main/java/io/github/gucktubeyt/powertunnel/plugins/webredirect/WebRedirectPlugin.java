@@ -27,9 +27,11 @@ public class WebRedirectPlugin extends PowerTunnelPlugin {
 
         final Configuration config = readConfiguration();
 
-        final String webTarget = config.get("URLTarget", "www.growtopia1.com");
+        final String webTarget = config.get("URLTarget", "www.growtopia1.com").replaceAll(" ", "");
         final String[] redirectAddr = config.get("redirectAddress", "127.0.0.1:8080").split(":", 2);
+        
+        final String[] splitWebTarget = webTarget.split(";");
 
-        registerProxyListener(new DNSListener(webTarget, redirectAddr[0], Integer.valueOf(redirectAddr[1])), -10);
+        registerProxyListener(new DNSListener(splitWebTarget, redirectAddr[0], Integer.valueOf(redirectAddr[1])), -10);
     }
 }

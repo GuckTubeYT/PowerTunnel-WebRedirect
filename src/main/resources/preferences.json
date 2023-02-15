@@ -1,10 +1,12 @@
 [
   {
     "key": "URLTarget",
-    "type": "string"
+    "type": "string",
+    "defaultValue": "www.google.com"
   },
   {
     "key": "redirectAddress",
-    "type": "string"
+    "type": "string",
+    "defaultValue": "127.0.0.1:8080"
   }
 ]
